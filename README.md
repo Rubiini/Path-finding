@@ -4,4 +4,6 @@
 
 [Tuntikirjanpito](doc/Tuntikirjanpito.md)
 
-[Viikkoraportti](doc/Viikkoraportti1.md)
+[Viikkoraportti1](doc/Viikkoraportti1.md)
+
+[Viikkoraportti2](doc/Viikkoraportti2.md)

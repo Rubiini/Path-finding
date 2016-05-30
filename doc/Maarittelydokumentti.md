@@ -1,6 +1,6 @@
 ##Reitinhaku
 
-Toteutan Dijkstra sekä A*-haun algoritmit minimikekoa käyttäen.
+Toteutan Dijkstra sekä A*-haun algoritmit binäärikekoa käyttäen.
 
 Ratkaisen reitinhakuongelman lyhimmän polun löytämisestä alkusolmusta a loppusolmuun b. Valitsin tehtävään Dijkstan, joka on ehkä tunnetuin reitinhaku algoritmi. Valitsin myös A* algoritmin, joka on nykyisin yksi nopeimmista ja käyteyimmistä reitinhaku algoritmeista.
 
@@ -14,7 +14,7 @@ Tutkittavassa verkossa liikutaan alkusolmusta kohti maalisolmua laskemalla kaari
 
 Algoritmien aika ja tilavaativuudet: 
    - A* aikavaativuus: O(n log n) ja tilavaativuus O(n) 
-   - Dijksta: O(n²) ja tilavaativuus O(n)
+   - Dijkstra: O(n²) ja tilavaativuus O(n)
 
 Lähteet:
    - Tietorakenteet ja algoritmit kurssin 2016 kevään luentokalvot
