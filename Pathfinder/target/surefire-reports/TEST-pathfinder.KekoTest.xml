@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.001" errors="0" skipped="0" tests="5" name="pathfinder.KekoTest">
+<testsuite failures="0" time="0.005" errors="0" skipped="0" tests="12" name="pathfinder.KekoTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64"/>
@@ -62,7 +62,14 @@
   </properties>
   <testcase time="0" classname="pathfinder.KekoTest" name="tyhjaMetodiPalauttaaFalseJosKekoEiOleTyhja"/>
   <testcase time="0" classname="pathfinder.KekoTest" name="lisaaMetodiToimii"/>
+  <testcase time="0.001" classname="pathfinder.KekoTest" name="heapifyYlosToimiiOikein"/>
   <testcase time="0" classname="pathfinder.KekoTest" name="poistaMetodiPoistaaSolmunKeosta"/>
-  <testcase time="0" classname="pathfinder.KekoTest" name="tyhjaMetodiPalauttaaTrueJosKekoOnTyhja"/>
-  <testcase time="0" classname="pathfinder.KekoTest" name="vaihdaToimiiOikein"/>
+  <testcase time="0.001" classname="pathfinder.KekoTest" name="tyhjaMetodiPalauttaaTrueJosKekoOnTyhja"/>
+  <testcase time="0" classname="pathfinder.KekoTest" name="tarkastaIndexinArvoToimiiOikeinJosOikeaaLastaEiOle"/>
+  <testcase time="0.001" classname="pathfinder.KekoTest" name="jarjestaToimiiOikein"/>
+  <testcase time="0" classname="pathfinder.KekoTest" name="tarkastaIndexinArvoToimiiOikeinJosOikeanPainoPienempi"/>
+  <testcase time="0" classname="pathfinder.KekoTest" name="tarkastaIndexinArvoToimiiOikeinJosVasemmanPainoPienempi"/>
+  <testcase time="0" classname="pathfinder.KekoTest" name="tarkastaOnkoLapsiaToimiiOikeinJosEiLapsia"/>
+  <testcase time="0" classname="pathfinder.KekoTest" name="tarkastaOnkoLapsiaToimiiOikeinJosOnLapsia"/>
+  <testcase time="0" classname="pathfinder.KekoTest" name="vaihdaMetodiToimiiOikein"/>
 </testsuite>

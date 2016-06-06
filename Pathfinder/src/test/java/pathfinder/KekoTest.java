@@ -18,7 +18,7 @@ public class KekoTest {
     
     @Before
     public void setUp() {
-        keko = new Keko(3);
+        keko = new Keko(4);
     }
     
     @Test
@@ -49,7 +49,7 @@ public class KekoTest {
     }
     
     @Test
-    public void vaihdaToimiiOikein() {
+    public void vaihdaMetodiToimiiOikein() {
         Solmu solmu1 = new Solmu(1);
         Solmu solmu2 = new Solmu(2);
         keko.lisaa(solmu1);
@@ -59,6 +59,96 @@ public class KekoTest {
         keko.vaihda(0, 1);
         Solmu solmu3 = keko.poista();
         assertTrue(solmu3.lisattavaPaino == 2);
+    }
+    
+    @Test
+    public void heapifyYlosToimiiOikein() {
+        Solmu solmu1 = new Solmu(1);
+        Solmu solmu2 = new Solmu(2);
+        Solmu solmu3 = new Solmu(3);
+        solmu1.lisattavaPaino = 5;
+        solmu2.lisattavaPaino = 4;
+        solmu3.lisattavaPaino = 2;
+        keko.lisaa(solmu1);
+        keko.lisaa(solmu2);
+        keko.lisaa(solmu3);
+        Solmu[] lista = keko.getKeko();
+        assertEquals(solmu3, lista[0]);
+        assertEquals(solmu1, lista[1]);
+        assertEquals(solmu2, lista[2]);
         
+    }
+    
+    @Test
+    public void jarjestaToimiiOikein() {
+        Solmu solmu1 = new Solmu(1);
+        Solmu solmu2 = new Solmu(2);
+        Solmu solmu3 = new Solmu(3);
+        solmu1.lisattavaPaino = 1;
+        solmu2.lisattavaPaino = 2;
+        solmu3.lisattavaPaino = 3;
+        keko.lisaa(solmu1);
+        keko.lisaa(solmu2);
+        keko.lisaa(solmu3);
+        Solmu[] lista = keko.getKeko();
+        lista[0].lisattavaPaino = 5;
+        keko.jarjestaKeko(0);
+        assertEquals(solmu2, lista[0]);
+        assertEquals(solmu1, lista[1]);
+        assertEquals(solmu3, lista[2]);
+    }
+    
+    @Test
+    public void tarkastaOnkoLapsiaToimiiOikeinJosEiLapsia() {
+        Solmu solmu = new Solmu(1);
+        keko.lisaa(solmu);
+        assertTrue(keko.tarkastaOnkoLapsia(1));
+    }
+    
+    @Test
+    public void tarkastaOnkoLapsiaToimiiOikeinJosOnLapsia() {
+        Solmu solmu1 = new Solmu(1);
+        Solmu solmu2 = new Solmu(2);
+        keko.lisaa(solmu1);
+        keko.lisaa(solmu2);
+        assertTrue(!keko.tarkastaOnkoLapsia(1));
+    }
+    
+    @Test
+    public void tarkastaIndexinArvoToimiiOikeinJosOikeaaLastaEiOle() {
+        Solmu solmu1 = new Solmu(1);
+        Solmu solmu2 = new Solmu(2);
+        keko.lisaa(solmu1);
+        keko.lisaa(solmu2);
+        int luku = keko.tarkastaIndexinArvo(2, 1);
+        assertEquals(1, luku);
+    }
+    
+    @Test 
+    public void tarkastaIndexinArvoToimiiOikeinJosOikeanPainoPienempi() {
+        Solmu solmu1 = new Solmu(1);
+        Solmu solmu2 = new Solmu(2);
+        Solmu solmu3 = new Solmu(3);
+        keko.lisaa(solmu1);
+        keko.lisaa(solmu2);
+        keko.lisaa(solmu3);
+        solmu2.lisattavaPaino = 3;
+        solmu3.lisattavaPaino = 2;
+        int luku = keko.tarkastaIndexinArvo(2, 1);
+        assertEquals(2, luku);
+    }
+    
+    @Test 
+    public void tarkastaIndexinArvoToimiiOikeinJosVasemmanPainoPienempi() {
+        Solmu solmu1 = new Solmu(1);
+        Solmu solmu2 = new Solmu(2);
+        Solmu solmu3 = new Solmu(3);
+        keko.lisaa(solmu1);
+        keko.lisaa(solmu2);
+        keko.lisaa(solmu3);
+        solmu2.lisattavaPaino = 2;
+        solmu3.lisattavaPaino = 3;
+        int luku = keko.tarkastaIndexinArvo(2, 1);
+        assertEquals(1, luku);
     }
 }

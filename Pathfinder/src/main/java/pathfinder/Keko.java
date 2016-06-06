@@ -28,7 +28,7 @@ public class Keko {
     }
 
     /**
-     * Poistaa keosta päällimmäisen ja kutsuu jarjestaKeko metodia.
+     * Poistaa keosta päällimmäisen solmun ja kutsuu jarjestaKeko metodia.
      * @return palauttaa poistetun solmun.
      */
     public Solmu poista() {
@@ -97,17 +97,44 @@ public class Keko {
      * @param uIndex Solmun u indexi keossa
      */
     public void jarjestaKeko(int uIndex) {
-        if (koko == 1) {                         //Palataan, jos keossa vain yksi alkio
-            return;
-        }
+        if (koko == 1) return;                   //Palataan, jos keossa vain yksi alkio
+        
         Solmu u = keko[uIndex];                  //Luodaan solmu u muuttuja
         int vasLapsenIndexi = 2 * uIndex + 1;    //Solmun u vasen lapsi
         int oikeLapsenIndexi = 2 * uIndex + 2;   //Solmun u oikea lapsi
         int lapsenIndexi;                        //Luodaan apumuuttuja
 
-        if (keko[vasLapsenIndexi] == null) {     //Palataan, jos u:lla ei ole lapsia
-            return;
+        if (tarkastaOnkoLapsia(vasLapsenIndexi)) return;
+        lapsenIndexi = tarkastaIndexinArvo(oikeLapsenIndexi, vasLapsenIndexi);
+        
+        while (u.vertaa(keko[lapsenIndexi]) == 1) {   //Käydään läpi kunnes keko on järjestetty
+            vaihda(uIndex, lapsenIndexi);
+            uIndex = lapsenIndexi;
+            u = keko[uIndex];
+            vasLapsenIndexi = 2 * uIndex + 1;
+            oikeLapsenIndexi = 2 * uIndex + 2;
+            if (tarkastaOnkoLapsia(vasLapsenIndexi)) return;
+            lapsenIndexi = tarkastaIndexinArvo(oikeLapsenIndexi, vasLapsenIndexi);
         }
+    }
+
+    /**
+     * Tarkastaa onko solmulla lapsia.
+     * @param vasLapsenIndexi Tarkastettavan solmun vasemman lapsen indexi.
+     * @return Palauttaa true jos solmulla ei ole lapsia.
+     */
+    public boolean tarkastaOnkoLapsia(int vasLapsenIndexi) {
+        return keko[vasLapsenIndexi] == null; //Palataan, jos u:lla ei ole lapsia
+    }
+
+    /**
+     * Tarkastaa 
+     * @param oikeLapsenIndexi Tarkatettavan solmun oikean lapsen indexi.
+     * @param vasLapsenIndexi Tarkastettavan solmun vasemman lapsen indexi.
+     * @return 
+     */
+    public int tarkastaIndexinArvo(int oikeLapsenIndexi, int vasLapsenIndexi) {
+        int lapsenIndexi;
         if (keko[oikeLapsenIndexi] == null) {    //Jos u:lla vain yksi lapsi, talletetaan sen arvo apumuuttujaan
             lapsenIndexi = vasLapsenIndexi;
         } else if (keko[oikeLapsenIndexi].vertaa(keko[vasLapsenIndexi]) == -1) {   //Jos oikean lapsen paino pienempi kuin vasemman
@@ -115,24 +142,10 @@ public class Keko {
         } else {                                 //Muuten apumuuttujaan talletetaan vasemman lapsen arvo 
             lapsenIndexi = vasLapsenIndexi;
         }
-        while (u.vertaa(keko[lapsenIndexi]) == 1) {   //Käydään läpi kunnes keko on järjestetty
-            vaihda(uIndex, lapsenIndexi);
-            uIndex = lapsenIndexi;
-            u = keko[uIndex];
-            vasLapsenIndexi = 2 * uIndex + 1;
-            oikeLapsenIndexi = 2 * uIndex + 2;
-            if (keko[vasLapsenIndexi] == null) {  
-                return;
-            }
-            if (keko[oikeLapsenIndexi] == null) {
-                lapsenIndexi = vasLapsenIndexi;
-            } else if (keko[oikeLapsenIndexi].vertaa(keko[vasLapsenIndexi]) == -1) {
-                lapsenIndexi = oikeLapsenIndexi;
-            } else {
-                lapsenIndexi = vasLapsenIndexi;
-            }
-        }
+        return lapsenIndexi;
     }
-    
-    
+
+    public Solmu[] getKeko() {
+        return keko;
+    }
 }
