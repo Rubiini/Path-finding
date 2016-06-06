@@ -9,3 +9,5 @@
 [Viikkoraportti2](doc/Viikkoraportti2.md)
 
 [![Coverage Status](https://coveralls.io/repos/github/Rubiini/Path-finding/badge.svg?branch=master)](https://coveralls.io/github/Rubiini/Path-finding?branch=master)
+
+[![Build Status](https://travis-ci.org/Rubiini/Path-finding.svg?branch=master)](https://travis-ci.org/Rubiini/Path-finding)
