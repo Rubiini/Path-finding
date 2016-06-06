@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: pathfinder.SolmuTest
+Test set: pathfinder.KekoTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
