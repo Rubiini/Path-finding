@@ -24,6 +24,7 @@ public class Dijkstra {
      * @param solmu Alkusolmu, josta haku alkaa
      */
     public void dijkstraAlgoritmi(Solmu solmu) {
+        
         solmu.tila = Tila.JONOSSA;               //Siirretään alkusolmu jonoon
         solmu.lisattavaPaino = 0;                //Alustetaan reitin paino
         Keko keko = new Keko(verkko.maxKoko);    //Luodaan uusi keko, jolle asetetaan maksimi koko, joka vastaan verkon solmujen lukumäärää.

@@ -8,6 +8,7 @@ public class Keko {
     private Solmu[] keko;
     private int maxKoko;
     private int koko;
+    private Boolean a;
 
     /**
      * Konstruktorissa alustetaan keolle maksimi koko 
@@ -16,8 +17,16 @@ public class Keko {
     public Keko(int maxKoko) {
         this.maxKoko = maxKoko;
         keko = new Solmu[maxKoko];
+        this.a = false;
     }
 
+    public Keko(int maxKoko, Boolean a) {
+        this.maxKoko = maxKoko;
+        keko = new Solmu[maxKoko];
+        this.a = a;
+    }
+
+    
     /**
      * Lisää solmun kekoon.
      * @param u Kekoon lisättävä solmu
@@ -80,7 +89,7 @@ public class Keko {
         Solmu u = keko[uIndex];
         int vIndex = (uIndex - 1) / 2;
         Solmu v = keko[vIndex];
-        while (u.vertaa(v) == -1) {
+        while (u.vertaa(v, a) == -1) {
             vaihda(uIndex, vIndex);
             uIndex = vIndex;
             if (uIndex == 0) {
@@ -107,7 +116,7 @@ public class Keko {
         if (tarkastaOnkoLapsia(vasLapsenIndexi)) return;
         lapsenIndexi = tarkastaIndexinArvo(oikeLapsenIndexi, vasLapsenIndexi);
         
-        while (u.vertaa(keko[lapsenIndexi]) == 1) {   //Käydään läpi kunnes keko on järjestetty
+        while (u.vertaa(keko[lapsenIndexi], a) == 1) {   //Käydään läpi kunnes keko on järjestetty
             vaihda(uIndex, lapsenIndexi);
             uIndex = lapsenIndexi;
             u = keko[uIndex];
@@ -137,7 +146,7 @@ public class Keko {
         int lapsenIndexi;
         if (keko[oikeLapsenIndexi] == null) {    //Jos u:lla vain yksi lapsi, talletetaan sen arvo apumuuttujaan
             lapsenIndexi = vasLapsenIndexi;
-        } else if (keko[oikeLapsenIndexi].vertaa(keko[vasLapsenIndexi]) == -1) {   //Jos oikean lapsen paino pienempi kuin vasemman
+        } else if (keko[oikeLapsenIndexi].vertaa(keko[vasLapsenIndexi], a) == -1) {   //Jos oikean lapsen paino pienempi kuin vasemman
             lapsenIndexi = oikeLapsenIndexi;                                       //Niin sen arvo talletetaan apumuuttujaan
         } else {                                 //Muuten apumuuttujaan talletetaan vasemman lapsen arvo 
             lapsenIndexi = vasLapsenIndexi;

@@ -6,6 +6,7 @@ package pathfinder;
  */
 public class Naapuri {
 
+    public int etaisyys;
     public int index;
     public int paino;
     public Naapuri seuraava;
@@ -20,5 +21,6 @@ public class Naapuri {
         this.index = index;
         this.seuraava = seuraava;
         this.paino = paino;
+        this.etaisyys = 1;
     }
 }
