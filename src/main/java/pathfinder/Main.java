@@ -28,7 +28,7 @@ public class Main {
         verkko.lisaaKaari(5, 6, 1);
         verkko.lisaaKaari(6, 5, 1);
         ATahti a = new ATahti(verkko);
-        a.etsiLyhinReitti(0, 6);
+        a.etsiLyhinReitti(2, 5);
     }
     
 }

@@ -26,7 +26,7 @@ public class SolmuTest {
     public void vertaaPalauttaOikeinJosSolmunPainoPienempiKuinVerrattavan() {
         Solmu s = new Solmu(2);
         s.lisattavaPaino = 3;
-        int luku = solmu.vertaa(s);
+        int luku = solmu.vertaa(s, false);
         assertEquals(-1, luku);
     }
     
@@ -34,7 +34,7 @@ public class SolmuTest {
     public void vertaaPalauttaOikeinJosSolmunPainoYhtasuuriKuinVerrattavan() {
         Solmu s = new Solmu(2);
         s.lisattavaPaino = 2;
-        int luku = solmu.vertaa(s);
+        int luku = solmu.vertaa(s, false);
         assertEquals(0, luku);
     }
     
@@ -42,7 +42,7 @@ public class SolmuTest {
     public void vertaaPalauttaOikeinJosSolmunPainoSuurempiKuinVerrattavan() {
         Solmu s = new Solmu(2);
         s.lisattavaPaino = 1;
-        int luku = solmu.vertaa(s);
+        int luku = solmu.vertaa(s, false);
         assertEquals(1, luku);
     }
     

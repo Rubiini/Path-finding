@@ -45,7 +45,7 @@ public class ATahti {
     }
     public void etsiLyhinReitti(int alku, int loppu) {
         laskeMatka(verkko.solmut[alku]);
-        System.out.println("Solmusta " + alku + " solmuun " + verkko.solmut[loppu].nro + " on yhteensä " + verkko.solmut[loppu].matka + "solmua");
+        System.out.println("Solmusta " + alku + " solmuun " + verkko.solmut[loppu].nro + " on vähintään " + verkko.solmut[loppu].matka + " solmua");
     }
     
     public void alusta() {
@@ -54,9 +54,8 @@ public class ATahti {
         }
     }
     
-    public int heuristiikka(Solmu nyt, Solmu loppu) {
-        int pituus = nyt.lisattavaPaino + loppu.matka;
-        return pituus;
+    public int heuristiikka(int nyt, int loppu) {
+        return  verkko.solmut[nyt].lisattavaPaino + verkko.solmut[loppu].matka;
     }
     
     public void ATahtiAlgoritmi(Solmu alku, Solmu loppu) {
