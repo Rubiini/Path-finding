@@ -25,6 +25,10 @@ public class Verkko {
     public void lisaaSolmu(int numero) {
         solmut[koko++] = new Solmu(numero);
     }
+    
+    public void lisaaSolmuKartalle(int numero, int x, int y) {
+        solmut[koko++] = new Solmu(numero, x, y);
+    }
 
     /**
      * Lisää kaaren verkossa olevien kahden solmun välille ja luo naapurisuhteet.

@@ -18,7 +18,7 @@ public class ATahti {
         this.a = false;
     }
     
-    public void laskeMatka(Solmu alku) {
+    public void vahitenSolmujaDijkstra(Solmu alku) {
         a = true;
         alku.tila = Tila.JONOSSA;                //Siirretään alkusolmu jonoon
         alku.matka = 0;                          //Alustetaan reitin paino
@@ -38,14 +38,29 @@ public class ATahti {
                 if (verkko.solmut[n.index].matka > u.matka + n.etaisyys) {
                     verkko.solmut[n.index].matka = u.matka + n.etaisyys;
                     keko.heapify(verkko.solmut[n.index]);
+                    reitti[taulukonIndexi++] = u.nro;
                 }
                 n = n.seuraava;                  //Muutetaan n solmu muuttuja nykyisen naapurisolmuksi
             }
         } 
     }
     public void etsiLyhinReitti(int alku, int loppu) {
-        laskeMatka(verkko.solmut[alku]);
-        System.out.println("Solmusta " + alku + " solmuun " + verkko.solmut[loppu].nro + " on vähintään " + verkko.solmut[loppu].matka + " solmua");
+        ATahtiAlgoritmi(verkko.solmut[alku], verkko.solmut[loppu]);
+        System.out.println("Solmusta " + alku + " solmuun " + verkko.solmut[loppu].nro + " on vähintään " + verkko.solmut[loppu].lisattavaPaino + " solmua");
+        for (int i = 0; i < 10; i++) {
+            
+        }
+        for (int i = 0; i < reitti.length; i++) {
+            if (i != 0) {
+                if (reitti[i] != reitti[i - 1]) {
+                    System.out.print(reitti[i] + "->");
+                }
+            } else {
+                System.out.print(reitti[0] + "->");
+            }
+            
+            
+        }
     }
     
     public void alusta() {
@@ -54,15 +69,17 @@ public class ATahti {
         }
     }
     
-    public int heuristiikka(int nyt, int loppu) {
-        return  verkko.solmut[nyt].lisattavaPaino + verkko.solmut[loppu].matka;
+    public int heuristiikka(int tutkittava, int loppu) {
+        int heuristiikkaX = Math.abs(verkko.solmut[tutkittava].getX() - verkko.solmut[loppu].getX());
+        int heuristiikkaY = Math.abs(verkko.solmut[tutkittava].getY() - verkko.solmut[loppu].getY());
+        return  verkko.solmut[tutkittava].lisattavaPaino + heuristiikkaY + heuristiikkaX;
     }
     
     public void ATahtiAlgoritmi(Solmu alku, Solmu loppu) {
         alusta();
         alku.tila = Tila.JONOSSA;
         alku.lisattavaPaino = 0;                 //Alustetaan reitin paino
-        Keko keko = new Keko(verkko.maxKoko);    //Luodaan uusi keko, jolle asetetaan maksimi koko, joka vastaan verkon solmujen lukumäärää.
+        Keko keko = new Keko(verkko.maxKoko);    //Luodaan uusi keko, jolle asetetaan maksimi koko, joka vastaa verkon solmujen lukumäärää.
         keko.lisaa(alku);      
         
         while(!keko.tyhja()) {
@@ -72,15 +89,20 @@ public class ATahti {
             Naapuri n = u.naapuri; 
             
             while(n != null) {
-                if (verkko.solmut[n.index].tila == Tila.KAYTY) {
-                    continue;
-                }
                 int mahdollinen = u.lisattavaPaino + n.paino;
-                if (verkko.solmut[n.index].tila == Tila.UUSI || mahdollinen < verkko.solmut[n.index].lisattavaPaino) { 
+                if (verkko.solmut[n.index].tila == Tila.UUSI) { 
                     keko.lisaa(verkko.solmut[n.index]);             //Solmu lisätään kekoon
                     verkko.solmut[n.index].tila = Tila.JONOSSA;     //Ja solmun tilaksi asetetaan -> JONOSSA
                 }
-                reitti[taulukonIndexi] = u.nro;
+             
+                if (heuristiikka(verkko.solmut[n.index].nro, verkko.solmut[loppu.nro].nro) > heuristiikka(verkko.solmut[u.nro].nro, verkko.solmut[loppu.nro].nro) + n.paino) {
+                    verkko.solmut[n.index].lisattavaPaino = u.lisattavaPaino + n.paino;
+                    keko.heapify(verkko.solmut[n.index]);
+                    reitti[taulukonIndexi++] = u.nro;
+                }
+                
+                
+                n = n.seuraava;   
             }
         }
     }  

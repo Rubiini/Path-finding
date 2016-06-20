@@ -13,6 +13,8 @@ public class Solmu {
     public int nro;
     public Naapuri naapuri;
     public Tila tila;
+    private int x;
+    private int y;
     
 
     /**
@@ -26,6 +28,15 @@ public class Solmu {
         matka = Integer.MAX_VALUE;
         lisattavaPaino = Integer.MAX_VALUE;
         tila = Tila.UUSI;
+    }
+    
+    public Solmu(int nro, int x, int y) {
+        this.nro = nro;
+        matka = Integer.MAX_VALUE;
+        lisattavaPaino = Integer.MAX_VALUE;
+        tila = Tila.UUSI;
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -54,4 +65,14 @@ public class Solmu {
         }
         return 1;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+    
+    
 }
